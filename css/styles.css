@@ -210,6 +210,8 @@ ul.contacts-list .contacts-item:not(:last-child) {
   background-size: cover;
   padding: 188px 0;
   max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .first-section .container {
@@ -316,14 +318,14 @@ ul.contacts-list .contacts-item:not(:last-child) {
   margin-bottom: 8px;
 }
 
-.team-section-item .social-block {
+/* .team-section-item .social-block {
   display: flex;
   justify-content: space-between;
   gap: 24px;
   padding: 0 16px;
-}
+} */
 
-.social-block .social-block-list {
+.social-block-list {
   display: flex;
   justify-content: center;
   gap: 24px;
@@ -456,7 +458,7 @@ ul.contacts-list .contacts-item:not(:last-child) {
 }
 
 .footer-social-link:hover,
-.footer-social-link:hover {
+.footer-social-link:focus {
   background-color: #31d0aa;
 }
 
