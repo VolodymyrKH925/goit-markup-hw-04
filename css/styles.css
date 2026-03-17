@@ -59,6 +59,10 @@ img {
 /* HEADER */
 .page-header {
   border-bottom: 1px solid #e7e9fc;
+  box-shadow:
+    0 1px 6px 0 rgba(46, 47, 66, 0.08),
+    0 1px 1px 0 rgba(46, 47, 66, 0.16),
+    0 2px 1px 0 rgba(46, 47, 66, 0.08);
 }
 
 .page-header .container {
@@ -109,6 +113,22 @@ ul.contacts-list .contacts-item:not(:last-child) {
   color: #2e2f42;
   display: block;
   padding: 24px 0 24px 0;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link.current {
+  position: relative;
+}
+
+.nav-link.current::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  border-radius: 2px;
+  width: 100%;
+  height: 4px;
+  background-color: #404bbf;
 }
 
 .contacts {
@@ -122,12 +142,14 @@ ul.contacts-list .contacts-item:not(:last-child) {
   color: #434455;
   display: block;
   padding: 24px 0 24px 0;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-link:hover,
 .nav-link:focus,
 .contacts-link:hover,
-.contacts-link:focus {
+.contacts-link:focus,
+.nav-link.current {
   color: #404bbf;
 }
 
@@ -180,6 +202,12 @@ ul.contacts-list .contacts-item:not(:last-child) {
 .first-section {
   background-color: #2e2f42;
   background-color: #2e2f42;
+  background-image:
+    linear-gradient(to top, rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)),
+    url("../images/people_office.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
   padding: 188px 0;
 }
 
@@ -213,6 +241,7 @@ ul.contacts-list .contacts-item:not(:last-child) {
   min-width: 169px;
   height: 56px;
   margin: 0 auto;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .first-section-btn:hover,
@@ -235,6 +264,16 @@ ul.contacts-list .contacts-item:not(:last-child) {
   overflow: hidden;
 }
 
+.feature-icon-block {
+  position: relative;
+  border: 1px solid #8e8f99;
+  border-radius: 4px;
+  height: 112px;
+  width: 100%;
+  background-color: #f4f4fd;
+  margin-bottom: 8px;
+}
+
 /* team section */
 
 .team-section {
@@ -250,6 +289,18 @@ ul.contacts-list .contacts-item:not(:last-child) {
   border-radius: 0 0 4px 4px;
 }
 
+.portfolio-section-item {
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.team-section-item,
+.portfolio-section-item:hover {
+  box-shadow:
+    0 2px 1px 0 rgba(46, 47, 66, 0.08),
+    0 1px 1px 0 rgba(46, 47, 66, 0.16),
+    0 1px 6px 0 rgba(46, 47, 66, 0.08);
+}
+
 .team-section-item div {
   padding: 32px 0;
 }
@@ -257,6 +308,34 @@ ul.contacts-list .contacts-item:not(:last-child) {
 .team-section-item h3,
 .team-section-item p {
   text-align: center;
+}
+.team-section-item-text {
+  margin-bottom: 8px;
+}
+
+.team-section-item .social-block {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 16px;
+}
+.social-link {
+  position: relative;
+  background-color: #4d5ae5;
+  flex-basis: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.social-link:hover {
+  background-color: #404bbf;
+}
+
+.team-social-link .custom,
+.footer-social-link .custom {
+  fill: #f4f4fd;
 }
 
 /* portfolio section */
@@ -266,11 +345,38 @@ ul.contacts-list .contacts-item:not(:last-child) {
   row-gap: 48px;
 }
 
-.portfolio-section-item div {
+.portfolio-section-item div.info-block {
   border-bottom: 1px solid #e7e9fc;
   border-left: 1px solid #e7e9fc;
   border-right: 1px solid #e7e9fc;
   padding: 32px 16px;
+}
+
+.portfolio-section-item {
+  width: calc((100% - 48px) / 3);
+}
+
+.portfolio-section-info {
+  position: relative;
+  overflow: hidden;
+  height: 300px;
+}
+
+.portfolio-section-item .portfolio-info-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #4d5ae5;
+  color: #f4f4fd;
+  padding: 40px 32px;
+  width: 360px;
+  height: 100%;
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio-section-item:hover .portfolio-info-text {
+  transform: translateY(0%);
 }
 
 /* FOOTER */
@@ -280,7 +386,9 @@ ul.contacts-list .contacts-item:not(:last-child) {
 }
 
 .page-footer .container {
-  display: block;
+  display: flex;
+  flex-direction: row;
+  gap: 120px;
 }
 
 .page-footer .logo {
@@ -303,4 +411,31 @@ ul.contacts-list .contacts-item:not(:last-child) {
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: 0.02em;
+}
+
+.footer-soc p {
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.footer-soc-list {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-social-link {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+.footer-social-link:hover {
+  background-color: #31d0aa;
+}
+
+.custom {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
